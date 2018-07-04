@@ -1,21 +1,32 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import { Switch, Route } from 'react-router-dom'
+
+/* COMPONENTS AND CSS */
+import './App.css'
+import Navbar from './components/Navbar'
+import Home from './components/Home'
+import NotFound from './components/NotFound'
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div className="main">
+
+        {/* NAVIGATION */}
+        <Navbar />
+        
+        {/* ROUTES */}
+        <Switch>
+          <Route exact path='/' render={() => {
+            return <Home />
+          }} />
+          {/* 404 */}
+          <Route path='*' component={NotFound} />
+        </Switch>
+
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App
