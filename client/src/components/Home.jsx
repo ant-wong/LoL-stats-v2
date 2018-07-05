@@ -6,6 +6,7 @@ class Home extends Component {
 	render() {
 		return (
 			<div>
+				{/* BUILD A SEARCH INPUT */}
 				<h1>test</h1>
 			</div>
 		)
