@@ -7,7 +7,10 @@ class Home extends Component {
 		return (
 			<div>
 				{/* BUILD A SEARCH INPUT */}
-				<h1>test</h1>
+				<h1 onClick={() => {this.props.getUser('BFY Meowington')}}>test</h1>
+				<a className="btn-floating btn-large waves-effect waves-light red" onClick={() => {this.props.getMatches(this.props.player.accountId)}}>
+					<i className="material-icons">add</i>
+				</a>
 			</div>
 		)
 	}

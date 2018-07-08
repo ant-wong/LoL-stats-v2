@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Switch, Route } from 'react-router-dom'
+import axios from 'axios'
 
 /* COMPONENTS AND CSS */
 import './App.css'
@@ -17,6 +18,30 @@ class App extends Component {
     }
   }
   
+  getUser = async (user) => {
+    let response  = await axios.get(`http://localhost:6060`, {
+      params: {
+        user: user
+      }
+    })
+    this.setState({
+      player: response.data
+    })
+    console.log(this.state)
+  }
+
+  getMatches = async (id) => {
+    let response = await axios.get(`http://localhost:6060/matches`, {
+      params: {
+        id: id
+      }
+    })
+    this.setState({
+      matches: response.data
+    })
+    console.log(this.state)
+  }
+  
   render() {
     return (
       <div className="main">
@@ -27,7 +52,10 @@ class App extends Component {
         {/* ROUTES */}
         <Switch>
           <Route exact path='/' render={() => {
-            return <Home />
+            return <Home 
+                      {...this.state}
+                      getUser={this.getUser}
+                      getMatches={this.getMatches}/>
           }} />
           <Route path='/summoner/:id' render={() => {
             return <Profile />
